@@ -8,7 +8,7 @@
 
   function loadEffects() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://raw.githubusercontent.com/atfinke/Dorm-Room-Server/master/Effects.txt", true);
+    xhr.open("GET", "https://raw.githubusercontent.com/atfinke/Dorm-Room-Client/master/Effects.txt", true);
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
