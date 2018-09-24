@@ -1,0 +1,10 @@
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
+
+runtime_config:
+  python_version: 3
+
+env_variables:
+  GITHUB_USERNAME: GITHUB_USERNAME
+  GITHUB_PASSWORD: GITHUB_PASSWORD

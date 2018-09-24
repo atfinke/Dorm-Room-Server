@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Andrew's Lights</title>
+  <script>
+
+  let effects = [
+    "Color Burst",
+    "Flames",
+    "Forest",
+    "Inner Peace",
+    "Nemo",
+    "Northern Lights",
+    "Snowfall",
+    "Random"
+  ]
+
+  function loadEffects() {
+    bodyHTML = "";
+    for (let i = 0; i < effects.length; i++) {
+      bodyHTML += '<tr onclick="updateEffect(this)"><td class="effects-data">' + effects[i] + '</td></tr>';
+    }
+    document.getElementById("effects-body").innerHTML = bodyHTML;
+
+    var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
+    if (!iOS) {
+        alert("This has only been tested on iOS.")
+    }
+  }
+
+  function updateEffect(x) {
+    effect = effects[x.rowIndex];
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "update/lights/effect?name=" + encodeURIComponent(effect));
+    xhr.send();
+
+    alert("Lights will be set to " + effect + " within 30 seconds.");
+  }
+
+</script>
+  <style>
+  html, body {
+    height: 90%;
+    min-width: 180px;
+    width: auto !important;
+    width: 180px;
+    background-color: #F3F3F3;
+  }
+
+  h1 {
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    font-size: 4em;
+    font-weight: 600;
+    font-family: -apple-system;
+    text-align: center;
+  }
+
+  table {
+    margin: 0px auto;
+    padding-bottom: 20px;
+  }
+
+  .effects-data {
+    font-size: 3em;
+    font-weight: 500;
+    font-family: -apple-system;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    color: rgb(0, 122, 255);
+    width: 100%;
+    text-align: center;
+  }
+
+  td {
+    display: inline-block;
+  }​
+
+  #spacer {
+    height: 300px;
+  }
+
+  .footer-link {
+    text-align: center;
+    color: #b8b8b8;
+    text-decoration: none;
+    font-size: 2.5em;
+    font-weight: 500;
+    font-family: -apple-system;
+    padding: 10px;
+  }
+
+  .footer-link:hover {
+    color: #717171;
+  }
+
+</style>
+</head>
+
+<body onload="loadEffects()">
+  <h1>Andrew's Lights</h1>
+
+  <table id="effects">
+    <tbody id="effects-body"> </tbody>
+  </table>
+
+  <table id="footer-table">
+    <tbody>
+      <tr>
+        <td><a class="footer-link" href="https://github.com/atfinke/Dorm-Room-Server">SOURCE</a></td>
+        <td><a class="footer-link" href="mailto:finke.help@gmail.com">SUPPORT</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>
