@@ -6,13 +6,15 @@
   <title>Andrew's Lights</title>
   <script>
 
+  let effects = []
+
   function loadEffects() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://raw.githubusercontent.com/atfinke/Dorm-Room-Client/master/Effects.txt", true);
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          let effects = xhr.responseText.split(",")
+          effects = xhr.responseText.split(",")
           bodyHTML = "";
           for (let i = 0; i < effects.length; i++) {
             bodyHTML += '<tr onclick="updateEffect(this)"><td class="effects-data">' + effects[i] + '</td></tr>';
