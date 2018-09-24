@@ -6,26 +6,29 @@
   <title>Andrew's Lights</title>
   <script>
 
-  let effects = [
-    "Color Burst",
-    "Flames",
-    "Forest",
-    "Inner Peace",
-    "Nemo",
-    "Northern Lights",
-    "Snowfall",
-    "Random"
-  ]
-
   function loadEffects() {
-    bodyHTML = "";
-    for (let i = 0; i < effects.length; i++) {
-      bodyHTML += '<tr onclick="updateEffect(this)"><td class="effects-data">' + effects[i] + '</td></tr>';
-    }
-    document.getElementById("effects-body").innerHTML = bodyHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://raw.githubusercontent.com/atfinke/Dorm-Room-Server/master/Effects.txt", true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          let effects = xhr.responseText.split(",")
+          bodyHTML = "";
+          for (let i = 0; i < effects.length; i++) {
+            bodyHTML += '<tr onclick="updateEffect(this)"><td class="effects-data">' + effects[i] + '</td></tr>';
+          }
+          document.getElementById("effects-body").innerHTML = bodyHTML;
+        } else {
+          alert(xhr.statusText);
+        }
+      }
+    };
+    xhr.onerror = function (e) {
+      alert(xhr.statusText);
+    };
+    xhr.send(null);
 
     var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-
     if (!iOS) {
         alert("This has only been tested on iOS.")
     }
