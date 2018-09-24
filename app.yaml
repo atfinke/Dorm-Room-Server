@@ -8,3 +8,6 @@ runtime_config:
 env_variables:
   GITHUB_USERNAME: GITHUB_USERNAME
   GITHUB_PASSWORD: GITHUB_PASSWORD
+
+automatic_scaling:
+  max_num_instances: 2
